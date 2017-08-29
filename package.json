@@ -1,0 +1,19 @@
+{
+  "name": "smartnode-mongoose",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node ../../bin/plugin.js -r -t storage -n smartnode-mongoose",
+    "preuninstall": "node ../../bin/plugin.js -u -t storage -n smartnode-mongoose"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^4.11.9"
+  },
+  "peerDependencies": {
+    "node-smartnode": "1.x"
+  }
+}
