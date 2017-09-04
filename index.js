@@ -2,11 +2,6 @@ const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(process.env.MONGODB || 'mongodb://localhost/smartnode', { useMongoClient: true }).then(
-    () => { global.success('Connection to DB successful'); },
-    (err) => { global.error('Connection to DB failed!', err); process.exit(0); }
-);
-
 let schema = new mongoose.Schema({ 
     key: {
         type: String,
@@ -38,6 +33,11 @@ module.exports = {
     Client: class Client {
         constructor(pluginName) {
             this._plugin = pluginName;
+            
+            mongoose.connect(process.env.MONGODB || 'mongodb://localhost/smartnode-client-' + pluginName, { useMongoClient: true }).then(
+                () => { global.success('Connection to DB successful'); },
+                (err) => { global.error('Connection to DB failed!', err); process.exit(0); }
+            );
         }
 
         async get(key) {
@@ -52,6 +52,11 @@ module.exports = {
         constructor({ room, plugin } = {}) {
             this._room = room;
             this._plugin = plugin;
+            
+            mongoose.connect(process.env.MONGODB || 'mongodb://localhost/smartnode-server-' + room + '-' + plugin, { useMongoClient: true }).then(
+                () => { global.success('Connection to DB successful'); },
+                (err) => { global.error('Connection to DB failed!', err); process.exit(0); }
+            );
         }
 
         async get(key) {
