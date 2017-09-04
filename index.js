@@ -26,7 +26,7 @@ let schema = new mongoose.Schema({
     "timestamps": true
 });
 
-let Schema = mongoose.model('Schema', schema);
+let Model = mongoose.model('Data', schema);
 
 ///////////////////////////////////////////////
 
@@ -41,11 +41,11 @@ module.exports = {
         }
 
         async get(key) {
-            return (await Schema.findOne({ key: buildKey(null, this._plugin, key) }));
+            return (await Model.findOne({ key: buildKey(null, this._plugin, key) }));
         }
 
         set(key, value) {
-            return (await Schema.updateOne({ key: buildKey(null, this._plugin, key) }, { value }, { upsert: true }));
+            return (await Model.updateOne({ key: buildKey(null, this._plugin, key) }, { value }, { upsert: true }));
         }
     },
     Server: class Server {
@@ -55,11 +55,11 @@ module.exports = {
         }
 
         async get(key) {
-            return (await Schema.findOne({ key: buildKey(this._room, this._plugin, key) }));
+            return (await Model.findOne({ key: buildKey(this._room, this._plugin, key) }));
         }
 
         set(key, value) {
-            return (await Schema.updateOne({ key: buildKey(this._room, this._plugin, key) }, { value }, { upsert: true }));
+            return (await Model.updateOne({ key: buildKey(this._room, this._plugin, key) }, { value }, { upsert: true }));
         }
     }
 }
