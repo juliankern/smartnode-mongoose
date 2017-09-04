@@ -41,7 +41,7 @@ module.exports = {
         }
 
         async get(key) {
-            return (await Model.findOne({ key: buildKey(null, this._plugin, key) }));
+            return (await Model.findOne({ key: buildKey(null, this._plugin, key) })).value;
         }
 
         async set(key, value) {
@@ -55,7 +55,7 @@ module.exports = {
         }
 
         async get(key) {
-            return (await Model.findOne({ key: buildKey(this._room, this._plugin, key) }));
+            return (await Model.findOne({ key: buildKey(this._room, this._plugin, key) })).value;
         }
 
         async set(key, value) {
