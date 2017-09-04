@@ -14,7 +14,7 @@ let schema = new mongoose.Schema({
     },
     value: { 
         required: true, 
-        type: Mixed
+        type: mongoose.Schema.Types.Mixed
     },
 }, {
     "toObject": {
